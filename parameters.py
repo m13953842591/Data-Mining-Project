@@ -9,8 +9,8 @@ FILE_SIZE = 100000  # should rerun data_management if changed
 NUM_FEATURE = 137
 
 # Path
-DATA_PATH = "E:\\Data_Mining_Project\\data"
-MODEL_PATH = "E:\\Data_Mining_Project\\model"
+DATA_PATH = "data"      # set your path to save data
+MODEL_PATH = "model"    # set your path to save model
 
 # define log directory
 TIMESTAMP = "{0:%Y-%m-%dT%H-%M-%S}".format(datetime.now())
