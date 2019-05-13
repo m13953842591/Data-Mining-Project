@@ -2,7 +2,7 @@
 Data-Mining-Project on Stock Price Prediction
 ## To run this project
 
-1. Since the data file is to large to upload to github, you have to manually download it on the course website 
+1. Since the data file is to large to upload to github, you have to manually download it [here](https://www.kaggle.com/acviolet/stockpriceprediction/downloads/stockpriceprediction.zip/1) 
 
 2. After download the dataset file(a single large file, around 1.63GB), you need to configure the `DATA_PATH` and `MODEL_PATH` on [parameter.py](https://github.com/m13953842591/Data-Mining-Project/blob/master/parameters.py). The `DATA_PATH` shows where your dataset is saved and the `MODEL_PATH` shows where your trained models is saved.
 
