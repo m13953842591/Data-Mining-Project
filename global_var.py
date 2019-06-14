@@ -9,7 +9,8 @@ FILE_SIZE = 100000  # should rerun data_management if changed
 NUM_FEATURE = 137
 
 # Path
-DATA_PATH = "data"      # set your path to save data
+DATA_PATH = "D:\\zchen\\Documents\\dataset\\Stock_Price_Prediction"
+# set your path to save data
 MODEL_PATH = "checkpoints"    # set your path to save checkpoints
 
 # define log directory

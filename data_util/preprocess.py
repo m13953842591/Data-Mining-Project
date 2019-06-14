@@ -26,6 +26,7 @@ def clear(dirname):
     os.makedirs(dirname)
 
 
+
 def split_break_save(raw_data_path, save_path_root, file_size):
     # we split the dataset into train set and test set
     # then we break train set and test set into small batches

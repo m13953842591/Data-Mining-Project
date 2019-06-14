@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="845b06ad-1b8d-4dc4-a151-a8ea9957b5f8" name="Default Changelist" comment="" />
+    <list default="true" id="845b06ad-1b8d-4dc4-a151-a8ea9957b5f8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data_util/data_loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/lstm.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Data-Mining-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Data-Mining-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkpoints/lstm_1.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-09T10-07-06/events.out.tfevents.1557367630.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-09T10-22-16/events.out.tfevents.1557368540.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-09T10-48-40/events.out.tfevents.1557370124.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-09T10-55-33/events.out.tfevents.1557370536.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-13T09-30-57/events.out.tfevents.1557711066.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-13T09-36-00/events.out.tfevents.1557711366.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-13T09-36-49/events.out.tfevents.1557711416.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-13T09-37-30/events.out.tfevents.1557711456.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2019-05-13T09-38-31/events.out.tfevents.1557711518.DESKTOP-KI3QRJ4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/lstm_1.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/1_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/Data Mining Course Project.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/report.aux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/report.fdb_latexmk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/report.fls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/report.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/report.synctex.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/report.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/result.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/stage1_report_group28.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/split.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_util/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,10 +44,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/generator.py">
+        <entry file="file://$PROJECT_DIR$/data_util/data_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1029">
-              <caret line="49" column="36" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
+            <state relative-caret-position="1617">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -23,10 +56,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/split.py">
+        <entry file="file://$PROJECT_DIR$/data_util/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="49" column="55" lean-forward="true" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+            <state relative-caret-position="147">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -34,28 +67,68 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/train.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/lstm.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+            <state relative-caret-position="210">
+              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.py">
+        <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+            <state relative-caret-position="63">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>\</find>
+      <find>configs</find>
+      <find>i</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>\\</replace>
+      <replace>self.configs</replace>
+      <replace>b</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,6 +140,20 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/data_generator.py" />
         <option value="$PROJECT_DIR$/data_management.py" />
+        <option value="$PROJECT_DIR$/models.py" />
+        <option value="$PROJECT_DIR$/model/utils.py" />
+        <option value="$PROJECT_DIR$/utils/data_process.py" />
+        <option value="$PROJECT_DIR$/glob.py" />
+        <option value="$PROJECT_DIR$/utils/generator.py" />
+        <option value="$PROJECT_DIR$/utils/preprocess.py" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/model/lstm.py" />
+        <option value="$PROJECT_DIR$/model/config_lstm.json" />
+        <option value="$PROJECT_DIR$/data_loader/data_process.py" />
+        <option value="$PROJECT_DIR$/data_util/data_process.py" />
+        <option value="$PROJECT_DIR$/data_util/data_loader.py" />
+        <option value="$PROJECT_DIR$/model/model.py" />
+        <option value="$PROJECT_DIR$/train.py" />
       </list>
     </option>
   </component>
@@ -105,6 +192,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zchen\OneDrive\Document\EE359_Data_Mining\Data-Mining-Project\model" />
+      <recent name="C:\Users\zchen\OneDrive\Document\EE359_Data_Mining\Data-Mining-Project\utils" />
       <recent name="C:\Users\ChenZixuan\OneDrive\Document\EE359_Data_Mining\Data-Mining-Project\report" />
     </key>
   </component>
@@ -133,20 +222,21 @@
       <workItem from="1557712747960" duration="1952000" />
       <workItem from="1557715514230" duration="935000" />
       <workItem from="1560503678436" duration="775000" />
+      <workItem from="1560508934017" duration="13608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3662000" />
+    <option name="totallyTimeSpent" value="17270000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991708" visible="true" weight="0.22473727" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991708" visible="true" weight="0.108208954" />
       <window_info id="Structure" order="1" sideWeight="0.50082916" side_tool="true" weight="0.2212766" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -156,7 +246,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -179,19 +269,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_management.py" />
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state relative-caret-position="273">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_management.py">
+    <entry file="file://$USER_HOME$/Anaconda3/envs/python35/Lib/site-packages/keras/layers/recurrent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-444">
+        <state relative-caret-position="298">
+          <caret line="2124" column="28" selection-start-line="2124" selection-start-column="23" selection-end-line="2124" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/datetime.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/python35/Lib/site-packages/keras/callbacks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="359" column="21" selection-start-line="359" selection-start-column="6" selection-end-line="359" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/python35/Lib/site-packages/keras/engine/training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="824" column="8" selection-start-line="824" selection-start-column="8" selection-end-line="824" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_util/generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_util/data_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1617">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_util/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -199,39 +347,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/split.py">
+    <entry file="file://$PROJECT_DIR$/global_var.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="49" column="55" lean-forward="true" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator.py">
+    <entry file="file://$PROJECT_DIR$/model/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="49" column="36" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        <state relative-caret-position="273">
+          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/lstm.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
