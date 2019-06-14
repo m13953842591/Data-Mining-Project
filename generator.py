@@ -1,6 +1,6 @@
 import numpy as np
 import os
-from parameters import *
+from config import *
 
 
 class BatchGenerator(object):

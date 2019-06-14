@@ -3,10 +3,10 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import os
 import shutil
-from parameters import *
+from config import *
+
 
 def get_features_and_labels(dataframe):
-    # TODO: to be overridden on stage2
     l1 = dataframe['AskPrice1'] + dataframe['BidPrice1']
     l2 = l1.shift(-FUTURE_N)
     label = l2 - l1

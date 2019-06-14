@@ -1,7 +1,7 @@
 from tensorflow._api.v1 import keras
 from models import *
-from parameters import *
-from batch_generator import BatchGenerator
+from config import *
+from generator import BatchGenerator
 import os
 
 train_data_path = DATA_PATH + "\\train"

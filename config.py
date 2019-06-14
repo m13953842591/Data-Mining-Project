@@ -10,7 +10,7 @@ NUM_FEATURE = 137
 
 # Path
 DATA_PATH = "data"      # set your path to save data
-MODEL_PATH = "model"    # set your path to save model
+MODEL_PATH = "checkpoints"    # set your path to save checkpoints
 
 # define log directory
 TIMESTAMP = "{0:%Y-%m-%dT%H-%M-%S}".format(datetime.now())
