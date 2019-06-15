@@ -9,7 +9,7 @@ class DataLoader:
         self.files = glob.glob(os.path.join(input_dir, "file_format"))
         self.split = split
         self.len_train_windows = None
-        self.n = int(len(self.files) * split) + 1
+        self.n = int(len(self.files) * (1-split)) + 1
 
     def get_test_data(self, seq_len, future_n):
         '''
@@ -58,6 +58,31 @@ class DataLoader:
         '''
         while True:
             for file in self.files[:self.n]:
+                data = np.load(file)
+                for i in range(0, data.shape[0] - seq_len - future_n,
+                               batch_size):
+                    batch_x = []
+                    batch_y = []
+                    bz = batch_size
+                    if i + batch_size >= data.shape[0] - seq_len - future_n:
+                        bz = data.shape[0] - seq_len - future_n - i
+                    for j in range(bz):
+                        b = i + j
+                        x = data[b:b + seq_len]
+                        y = data[b + seq_len + future_n - 1][0] + \
+                            data[b + seq_len + future_n - 1][1] - \
+                            data[b + seq_len - 1][0] - data[b + seq_len - 1][1]
+                        batch_x.append(x)
+                        batch_y.append(y)
+                    yield batch_x, batch_y
+
+    def generate_test_batch(self, seq_len, future_n, batch_size):
+        '''
+        Yield a generator of training data from filename on
+        given list of cols split for train/test
+        '''
+        while True:
+            for file in self.files[self.n:]:
                 data = np.load(file)
                 for i in range(0, data.shape[0] - seq_len - future_n,
                                batch_size):

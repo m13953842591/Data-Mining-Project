@@ -11,18 +11,10 @@ NUM_FEATURE = 137
 # Path
 DATA_PATH = "D:\\zchen\\Documents\\dataset\\Stock_Price_Prediction"
 # set your path to save data
-MODEL_PATH = "checkpoints"    # set your path to save checkpoints
 
 # define log directory
 TIMESTAMP = "{0:%Y-%m-%dT%H-%M-%S}".format(datetime.now())
 LOGDIR = 'logs/' + TIMESTAMP
 
-# Hyper parameters
-BATCH_SIZE = 1000
-NUM_EPOCH = 10
-HIDDEN_SIZE = 50
-USE_DROPOUT = True
-DROPOUT_RATE = 0.5
-LR = 0.0001      # learning rate
-RR = 0.001      # regularization rate
-DECAY = 0.5     # decay rate
+# train
+BATCH_SIZE = 100
