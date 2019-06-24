@@ -3,7 +3,8 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import os
 import shutil
-from config import *
+from global_var import *
+import glob
 
 
 def get_features_and_labels(dataframe):
@@ -14,7 +15,7 @@ def get_features_and_labels(dataframe):
     label = label.to_numpy(dtype=np.float32, copy=False)\
         .reshape((label.shape[0], 1))
 
-    dataframe.drop(axis=1, labels=['UpdateTime', 'UpdateMillisec'], inplace=True)
+    dataframe.drop(axis=1, labels=['Unnamed: 0', 'UpperLimitPrice', 'LowerLimitPrice'], inplace=True)
     dataframe = dataframe.to_numpy(dtype=np.float32, copy=False)
     min_len = min(dataframe.shape[0], label.shape[0])
     return dataframe[:min_len], label[:min_len]
@@ -24,7 +25,6 @@ def clear(dirname):
     if os.path.exists(dirname):
         shutil.rmtree(dirname)
     os.makedirs(dirname)
-
 
 
 def split_break_save(raw_data_path, save_path_root, file_size):
@@ -63,8 +63,43 @@ def split_break_save(raw_data_path, save_path_root, file_size):
                  labels=labels[i * file_size: (i+1) * file_size])
 
 
+def get_numpy_dataset(input_dir, output_dir, split=0.3):
+
+    files = glob.glob(os.path.join(input_dir, ".csv"))
+
+    if not files:
+        raise Exception("there is no csv file in directory: %s" % input_dir)
+    if not os.path.exists(os.path.join(output_dir, "train")):
+        os.makedirs(os.path.join(output_dir, "train"))
+    if not os.path.exists(os.path.join(output_dir, "test")):
+        os.makedirs(os.path.join(output_dir, "test"))
+
+    n = int((1-split) * len(files))
+
+    for file in files[:n]:
+        print("processing %s" % file)
+        df = pd.read_csv(file)
+        xs, ys = get_features_and_labels(df)
+        save_path = os.path.join(output_dir, "train", os.path.basename(file) + ".npz")
+        np.savez(save_path, x=xs, y=ys)
+
+    if n == len(files):
+        raise Exception("error: no test dataset!")
+
+    for file in files[n:]:
+        print("processing %s" % file)
+        df = pd.read_csv(file)
+        xs, ys = get_features_and_labels(df)
+        save_path = os.path.join(output_dir, "test", os.path.basename(file) + ".npz")
+        np.savez(save_path, x=xs, y=ys)
+
+    print("finish processing, check new dataset in %s" % output_dir)
+
+
 if __name__ == '__main__':
-    raw_data_path = DATA_PATH + "/data.csv"
-    split_break_save(raw_data_path, save_path_root=DATA_PATH,
-                     file_size=FILE_SIZE)
-    print("data management succeed!")
+    itr = pd.read_csv("C:\\Users\\ChenZixuan\\Downloads\\split-normalize\\data_split_0.csv",
+                      iterator=True)
+
+    df = itr.get_chunk(100)
+    x, y = get_features_and_labels(df)
+    print("x.shape = ", x.shape, "; y.shape = ", y.shape)

@@ -1,10 +1,7 @@
-import os
 import numpy as np
 from numpy import newaxis
 from keras.layers import Dense, Dropout, LSTM, Input
 from keras.models import Sequential, load_model
-from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
-from global_var import *
 
 
 def load_model(self, filepath):
@@ -48,61 +45,13 @@ def build_model(configs):
     return model
 
 
-def train(self, x, y, epochs, batch_size, save_dir, val_split):
-
-    name = self.configs['name'] if 'name' in self.configs else 'Model'
-    print('[%s] Training Started' % name)
-    print('[%s] %s epochs, %s batch size' % (name, epochs, batch_size))
-
-    save_fname = os.path.join(save_dir,
-                              '%s_{epoch:02d}-{val_acc:.2f}.hdf5' % name)
-    callbacks = [
-        EarlyStopping(monitor='val_loss', patience=2),
-        ModelCheckpoint(filepath=save_fname, monitor='val_loss',
-                        save_best_only=True),
-        TensorBoard(LOGDIR)
-    ]
-    self.model.fit(
-        x,
-        y,
-        epochs=epochs,
-        batch_size=batch_size,
-        callbacks=callbacks,
-        validation_split=val_split,
-    )
-
-def train_generator(self, data_gen, val_data, epochs, batch_size, steps_per_epoch,
-                    save_dir):
-    name = self.configs['name'] if 'name' in self.configs else 'Model'
-    print('[%s] Training Started' % name)
-
-    print('[%s] %s epochs, %s batch size, %s batches per epoch' % (name,
-          epochs, batch_size, steps_per_epoch))
-
-    save_fname = os.path.join(save_dir,
-                              '%s_{epoch:02d}-{val_acc:.2f}.hdf5' % name)
-
-    callbacks = [
-        ModelCheckpoint(filepath=save_fname, monitor='loss',
-                        save_best_only=True),
-        TensorBoard(LOGDIR)
-    ]
-    self.model.fit_generator(
-        data_gen,
-        steps_per_epoch=steps_per_epoch,
-        epochs=epochs,
-        callbacks=callbacks,
-        validation_data=val_data,
-        validation_steps=100,
-        workers=1
-    )
-
 def predict_point_by_point(self, data):
     # Predict each timestep given the last sequence of true data, in effect only predicting 1 step ahead each time
     print('[Model] Predicting Point-by-Point...')
     predicted = self.model.predict(data)
     predicted = np.reshape(predicted, (predicted.size,))
     return predicted
+
 
 def predict_sequences_multiple(self, data, window_size, prediction_len):
     # Predict sequence of 50 steps before shifting prediction run forward by 50 steps
@@ -119,6 +68,7 @@ def predict_sequences_multiple(self, data, window_size, prediction_len):
                                    predicted[-1], axis=0)
         prediction_seqs.append(predicted)
     return prediction_seqs
+
 
 def predict_sequence_full(self, data, window_size):
     # Shift the window by 1 new prediction each time, re-run predictions on new window

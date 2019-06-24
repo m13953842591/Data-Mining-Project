@@ -1,15 +1,17 @@
-from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
-import json
-from data_utils.data_loader import DataLoader
-from global_var import *
 from model.model import build_model
 import os
-import six
 import glob
+from data_utils.data_loader import get_generator
+from keras.callbacks import TensorBoard, ModelCheckpoint
+import json
 
 
-def find_latest_checkpoint(checkpoints_path):
-    paths = glob.glob(checkpoints_path + ".*")
+def find_latest_checkpoint(checkpoints_dir):
+    if not os.path.exists(checkpoints_dir):
+        print("checkpoint directory not exist!")
+        return None, -1
+
+    paths = glob.glob(os.path.join(checkpoints_dir, ""))
     maxep = -1
     r = None
     for path in paths:
@@ -21,80 +23,57 @@ def find_latest_checkpoint(checkpoints_path):
 
 
 def train(input_dir,
-          configs,
-          future_n,
-          split,
-          checkpoints_path=None,
+          seq_len,
           epochs=5,
           batch_size=2,
-          val_data=None,
-          val_batch_size=2,
-          auto_resume_checkpoint=False,
+          test_batch_size=2,
           steps_per_epoch=512,
-          callbacks=None):
+          model_name="lstm"):
 
-    model = build_model(configs=configs)
+    config_path = os.path.join("model", model_name + ".json")
+    if not os.path.exists(config_path):
+        raise Exception("invalid model name!")
+
+    with open(config_path, 'r') as f:
+        configs = json.load(f)
+
+    model = build_model(configs)
 
     model.summary()
 
-    if auto_resume_checkpoint and (not checkpoints_path is None):
-            model.load_weights(checkpoints_path)
+    train_dir = os.path.join(input_dir, "train")
+    test_dir = os.path.join(input_dir, "test")
+    
+    if not os.path.exists(train_dir):
+        raise Exception("train data directory not exist")
+    if not os.path.exists(test_dir):
+        raise Exception("test data directory not exist")
 
-    data_loader = DataLoader(input_dir, split=split)
+    train_gen = get_generator(train_dir,
+                              seq_len=seq_len,
+                              batch_size=batch_size)
 
-    train_gen = DataLoader.generate_train_batch()
+    test_gen = get_generator(test_dir,
+                             seq_len=seq_len,
+                             batch_size=test_batch_size)
 
-    if not validate:
-        for ep in range(latest_ep + 1, latest_ep + 1 + epochs):
-            print("Starting Epoch ", ep)
-            model.fit_generator(train_gen,
-                                steps_per_epoch,
-                                epochs=1,
-                                callbacks=callbacks)
-            if not checkpoints_path is None:
-                model.save_weights(checkpoints_path + "." + str(ep))
-                print("saved ", checkpoints_path + ".models." + str(ep))
-            print("Finished Epoch", ep)
-    else:
-        for ep in range(latest_ep + 1, latest_ep + 1 + epochs):
-            print("Starting Epoch ", ep)
-            model.fit_generator(train_gen,
-                                steps_per_epoch,
-                                validation_data=val_gen,
-                                validation_steps=200,
-                                callbacks=callbacks,
-                                epochs=1)
+    callbacks = [
+        TensorBoard(log_dir='./logs'),
+        ModelCheckpoint("checkpoints\\%s.{epoch:02d}-{val_loss:.2f}.hdf5" % model_name,
+                        save_best_only=True,
+                        monitor='val_loss'),
+    ]
+    model.fit_generator(generator=train_gen,
+                        steps_per_epoch=steps_per_epoch,
+                        epochs=epochs,
+                        validation_data=test_gen,
+                        validation_steps=100,
+                        callbacks=callbacks)
 
-            if not checkpoints_path is None:
-                model.save_weights(checkpoints_path + "." + str(ep))
-                print("saved ", checkpoints_path + ".models." + str(ep))
-            print("Finished Epoch", ep)
+    print("finish training")
 
 
 if __name__ == '__main__':
-    train_images_dir = DATA_PATH + "/train_images"
-    val_images_dir = DATA_PATH + "/val_images"
-    train_labels_dir = DATA_PATH + "/train_labels"
-    val_labels_dir = DATA_PATH + "/val_labels"
-    tensorboard = TensorBoard(log_dir='./logs/%s/' % MODEL_NAME)
-    train(model=MODEL_NAME,
-          train_images=train_images_dir,
-          train_annotations=train_labels_dir,
-          input_height=INPUT_HEIGHT,
-          input_width=INPUT_WIDTH,
-          n_classes=NUM_CLASS,
-          verify_dataset=False,
-          checkpoints_path="checkpoints/" + MODEL_NAME,    # don't add '/' in the end
-          epochs=EPOCH,
-          batch_size=BATCH_SIZE,
-          validate=True,
-          val_images=val_images_dir,
-          val_annotations=val_labels_dir,
-          val_batch_size=BATCH_SIZE,
-          auto_resume_checkpoint=AUTO_RESUME,
-          load_weights=None,
-          steps_per_epoch=STEPS_PER_EPOCH,
-          optimizer_name=OPTIMIZER,
-          callbacks=[tensorboard]
-          )
+    pass
+
 
