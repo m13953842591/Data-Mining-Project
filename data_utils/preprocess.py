@@ -1,9 +1,10 @@
 import pandas as pd
+from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
 import shutil
-from global_var import *
+from config import *
 import glob
 
 
@@ -13,12 +14,17 @@ def get_features_and_labels(dataframe):
     label = l2 - l1
     label.dropna(axis=0, how='any', inplace=True)
     label = label.to_numpy(dtype=np.float32, copy=False)\
-        .reshape((label.shape[0], 1))
+        .reshape(label.shape[0], 1)
 
-    dataframe.drop(axis=1, labels=['Unnamed: 0', 'UpperLimitPrice', 'LowerLimitPrice'], inplace=True)
-    dataframe = dataframe.to_numpy(dtype=np.float32, copy=False)
-    min_len = min(dataframe.shape[0], label.shape[0])
-    return dataframe[:min_len], label[:min_len]
+    dataframe.drop(axis=1,
+                   labels=['Unnamed: 0', 'UpperLimitPrice', 'LowerLimitPrice'],
+                   inplace=True)
+    x = dataframe.values
+    min_max_scalar = preprocessing.MinMaxScaler()
+    x_scaled = min_max_scalar.fit_transform(x)
+
+    min_len = min(x_scaled.shape[0], label.shape[0])
+    return x_scaled[:min_len], label[:min_len]
 
 
 def clear(dirname):
@@ -65,7 +71,7 @@ def split_break_save(raw_data_path, save_path_root, file_size):
 
 def get_numpy_dataset(input_dir, output_dir, split=0.3):
 
-    files = glob.glob(os.path.join(input_dir, ".csv"))
+    files = glob.glob(os.path.join(input_dir, "*.csv"))
 
     if not files:
         raise Exception("there is no csv file in directory: %s" % input_dir)
@@ -76,30 +82,37 @@ def get_numpy_dataset(input_dir, output_dir, split=0.3):
 
     n = int((1-split) * len(files))
 
+    m_train, m_test = 0, 0
     for file in files[:n]:
         print("processing %s" % file)
+        name = os.path.basename(file)[:-4]
         df = pd.read_csv(file)
         xs, ys = get_features_and_labels(df)
-        save_path = os.path.join(output_dir, "train", os.path.basename(file) + ".npz")
+        save_path = os.path.join(output_dir, "train", name + ".npz")
         np.savez(save_path, x=xs, y=ys)
+        m_train += ys.shape[0]
 
     if n == len(files):
         raise Exception("error: no test dataset!")
 
     for file in files[n:]:
         print("processing %s" % file)
+        name = os.path.basename(file)[:-4]
         df = pd.read_csv(file)
         xs, ys = get_features_and_labels(df)
-        save_path = os.path.join(output_dir, "test", os.path.basename(file) + ".npz")
+        save_path = os.path.join(output_dir, "test", name + ".npz")
         np.savez(save_path, x=xs, y=ys)
+        m_test += ys.shape[0]
 
     print("finish processing, check new dataset in %s" % output_dir)
+    print("generated training samples = %d, testing samples = %d" % (m_train,
+                                                                     m_test))
 
 
 if __name__ == '__main__':
-    itr = pd.read_csv("C:\\Users\\ChenZixuan\\Downloads\\split-normalize\\data_split_0.csv",
-                      iterator=True)
+    # nodrop: train 1219467 test: 501660
+    # split: train 399323 test: 176320
 
-    df = itr.get_chunk(100)
-    x, y = get_features_and_labels(df)
-    print("x.shape = ", x.shape, "; y.shape = ", y.shape)
+    input_dir = "D:\\zchen\\下载\\data\\split"
+    output_dir = os.path.join(DATA_PATH, "split")
+    get_numpy_dataset(input_dir, output_dir, 0.3)

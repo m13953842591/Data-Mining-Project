@@ -5,7 +5,7 @@ import os
 
 def get_generator(input_dir, seq_len, batch_size):
 
-    files = glob.glob(os.path.join(input_dir, ".npz"))
+    files = glob.glob(os.path.join(input_dir, "*.npz"))
     if not files:
         raise Exception("there is no npz file in %s" % input_dir)
 
@@ -25,5 +25,6 @@ def get_generator(input_dir, seq_len, batch_size):
                     y = ys[b + seq_len - 1]
                     batch_x.append(x)
                     batch_y.append(y)
-                yield batch_x, batch_y
+                yield np.array(batch_x, dtype=np.float32), \
+                      np.array(batch_y, dtype=np.float32)
 
